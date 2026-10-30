@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Shuffle a topic, prepare for 3 minutes, then speak for 3. SSB lecturette practice.">
+  <meta name="theme-color" content="#0F1115">
+  <title>ace.lecturette</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="app-header">
+    <span class="wordmark">ace.lecturette</span>
+  </header>
+
+  <div class="app-container">
+    <main class="stage-container" id="stage-container">
+      <!-- HOME SCREEN -->
+      <section id="screen-home" class="screen screen-active" aria-label="Topic Selection">
+        <div class="topic-hero-container">
+          <p class="draw-label" id="draw-label" aria-hidden="true"></p>
+          <h1 id="home-topic-display" class="topic-display placeholder">Press shuffle to draw a topic</h1>
+        </div>
+
+        <div class="actions-group">
+          <button id="btn-shuffle" class="btn btn-secondary" type="button">Shuffle</button>
+          <button id="btn-start" class="btn btn-primary" type="button" disabled>Start</button>
+        </div>
+
+        <div class="category-wrapper">
+          <label for="category-select" class="category-label">Category</label>
+          <select id="category-select" class="control-select">
+            <option value="all">All categories</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- PREP SCREEN -->
+      <section id="screen-prep" class="screen timer-screen" aria-label="Preparation Phase" hidden>
+        <p id="prep-topic-display" class="active-topic-text"></p>
+
+        <div class="clock-block">
+          <span class="phase-label">Prep time</span>
+          <div class="timer-display" id="prep-timer" role="timer">3<span class="colon">:</span>00</div>
+          <div class="linebar" id="prep-bar" aria-hidden="true">
+            <i class="fill"></i>
+            <b class="head"></b>
+          </div>
+          <p class="hint" id="prep-hint">Take up to 3 minutes, or start speaking straight away.</p>
+        </div>
+
+        <div class="actions-group">
+          <button id="btn-start-prep" class="btn btn-secondary" type="button">
+            <svg class="ico" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1l7 4-7 4z"/></svg>Start prep
+          </button>
+          <button id="btn-skip-prep" class="btn btn-primary" type="button">Start speaking</button>
+        </div>
+        <div class="session-nav">
+          <button id="btn-end-prep" class="btn-text" type="button">End session</button>
+        </div>
+      </section>
+
+      <!-- SPEAKING SCREEN -->
+      <section id="screen-speaking" class="screen timer-screen" aria-label="Speaking Phase" hidden>
+        <p id="speaking-topic-display" class="active-topic-text"></p>
+
+        <div class="clock-block">
+          <span class="phase-label">Speaking time</span>
+          <div class="timer-display" id="speaking-timer" role="timer">3<span class="colon">:</span>00</div>
+          <div class="linebar" id="speak-bar" aria-hidden="true">
+            <i class="fill"></i>
+            <b class="head"></b>
+          </div>
+          <div id="speaking-stage-badge" class="stage-badge stage-intro" aria-live="polite">Intro</div>
+        </div>
+
+        <div id="speaking-running-controls" class="actions-group">
+          <button id="btn-end-speaking" class="btn btn-primary" type="button">
+            <svg class="ico" viewBox="0 0 10 10" aria-hidden="true"><rect x="1.5" y="1.5" width="7" height="7"/></svg>End session
+          </button>
+        </div>
+
+        <div id="speaking-ended-view" class="ended-view" hidden>
+          <p class="ended-title">Time’s up</p>
+          <button id="btn-shuffle-another" class="btn btn-primary" type="button">Shuffle another topic</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="topics.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
